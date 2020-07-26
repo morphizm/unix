@@ -1,0 +1,4 @@
+Scripts .profile; .bash_profile; .login - when first login to system;
+Scripts .bashrc - every launch
+
+$? - returning code

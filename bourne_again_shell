@@ -1,0 +1,61 @@
+find /home -name core -print > /tmp/cores 2>&1 &
+find /home -name core -print | wc -l
+tar -cf - . | (cd newdir; tar -xf -)
+hello() { echo "Hekko" $LOGNAME "!"; }
+
+() - new interpretator
+{} - current ;
+
+var=value
+echo $var
+
+var=`command`
+
+HOME
+PATH
+MAIL
+TERM
+PS1 - welcome terminal
+PS2 - // -
+
+PS1=`uname -n`">"
+
+Variables
+$1, $2, ... - positioning arguments
+$# - count positioning args
+$? - last returning code(sync)
+$$ - PID current process
+$! - PID last async process
+$*;$@ - all args
+$0 - name of programm
+
+run > /dev/null 2>&1 &
+ps -ef | grep myproc
+ps -ef | grep myproc | grep -v grep
+
+function() { cmd1; cmd2.... }
+
+mcd()
+{
+cd $*
+PS1=`pwd`
+}
+
+if 
+then
+[elif
+ then]
+[else then]
+fi
+
+while
+do
+done
+
+until do done
+for var on ...
+do done
+
+case in
+esac
+

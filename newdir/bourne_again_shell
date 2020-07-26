@@ -1,0 +1,4 @@
+find /home -name core -print > /tmp/cores 2>&1 &
+find /home -name core -print | wc -l
+tar -cf - . | (cd newdir; tar -xf -)
+hello() { echo "Hekko: $LOGNAME "!"; }
