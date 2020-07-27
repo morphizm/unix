@@ -270,3 +270,18 @@ SIGVTALRM 26        complete              setitimer(2)
 SIGXCPU   24        complete+core         limit procession time
 SIGXFSZ   25        complete+core         limit on size file
 
+
+signal(2) - установить диспозицию сигнала, таким образом можно повесить обработчик для сигнала
+POSIX.1 - sigaction(2) - установить диспозицию сигнала, узнать ее текущее значение
+Структура sigaction
+void (*sa_handler)(int) - обработчик сигнала sig;
+void (*sa_sigaction)(int, siginfo_t *, void *) - -//- when flag SA_SIGINFO is set
+sigset_t sa_mask - signal mask
+int sa_flags - flags
+
+
+-----------
+LIMITS
+soft limit
+hard limit
+increase - only root;

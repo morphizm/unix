@@ -346,3 +346,65 @@ int kill(pid_t pid, int sig);
 #include <signal.h>
 void (*signal (int sig, void (*disp)(int)))(int);
 // SIG_DFL, SIG_IGN
+
+#include <signal.h>
+int sigemptyset(sigset_t *set);
+int sigfillset(sigset_t *set);
+int sigaddset(sigset_t *set, int signo);
+int sigdelset(sigset_t *set, int signo);
+int sigismember(sigset_t *set, int signo);
+int sigaction(int sig, const struct sigaction *act, struct sigaction *cact);
+// Структура sigaction
+void (*sa_handler)(int);
+void (*sa_sigaction)(int, siginfo_t *, void *);
+sigset_t sa_mask;
+int sa_flags;
+// sa_flags:
+// SA_ONSTACK - change stack
+// SA_RESETHAND - if func-interupteded define then disp will change on SGI_DFL and signal will not block
+// SA_NODEFER
+// SA_RESTART
+// SIG_SIGINFO
+// SA_NOCLDWAIT*
+// SA_NOCLDSTOP
+
+// struct siginfo_t - <siginfo.h>
+// int si_signo - sig num
+// int si_errno - err num;
+// int si_code - reason send sig
+// if si_code <=0 => sig sends by applied +:
+// pid_t si_pid
+// uid_t si_uid
+void handler(int, siginfo_t *info, void *context);
+
+#include <signal.h>
+int sigprocmask(int how, const sigset_t *set, sigset_t *oldset);
+// SIG_BLOCK
+// SIG_UNBLOCK
+// SIG_SETMASK
+int sigpending(sigset_t *set);
+int sigsuspend(const sigset_t *mask);
+
+#include <sys/time.h>
+#include <sys/resource.h>
+#include <unistd.h>
+int getrusage(int who, struct rusage *usage);
+// who == RUSAGE_SELF or RUSAGE_CHILDREN
+struct rusage (
+  struct timeval ru_utime;
+  struct timeval ru_stime;
+  long ru_maxrss;
+  long ru_ixrss;
+  long ru_idrss;
+  long ru_isrss;
+  long ru_minflt;
+  long ru_majflt;
+  long ru_nswap;
+  long ru_inblock;
+  long ru_oublock;
+  long ru_msgsnd;
+  long ru_msgrcv;
+  long ru_nsignals;
+  long ru_nvcsw;
+  long ru_nivcsw;
+);
