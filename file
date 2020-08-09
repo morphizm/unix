@@ -285,3 +285,8 @@ LIMITS
 soft limit
 hard limit
 increase - only root;
+
+
+-----
+Demons - a some work process, no belongs to any user, group.
+init, cron, inetd, sendmail

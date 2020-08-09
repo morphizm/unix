@@ -408,3 +408,21 @@ struct rusage (
   long ru_nvcsw;
   long ru_nivcsw;
 );
+
+#include <syslog.h>
+void syslog(int priority, char *logstring, int *params);
+/*
+priority:
+LOG_EMERG - panic
+LOG_ALERT - unnormal state
+LOG_CRIT - critical event
+LOG_ERR - some errors
+LOG_WARNING - ..
+LOG_NOTICE
+LOG_INFO
+LOG_DEBUG
+*/
+void openlog(char *ident, int logopt, int facility);
+// logopt: LOG_PID, LOG_CONS,
+// facility LOG_KERN, LOG_USER, LOG_MAIL, LOG_DAEMON, LOG_NEWS, LOG_CRON
+void closelog(void);
