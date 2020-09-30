@@ -23,6 +23,7 @@ type name
 ulimit; umask [nnn]; unalias
 unset var...
 wait pid
+mknod - create FIFO
 
 %jobid
 stop %jobid

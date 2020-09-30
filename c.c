@@ -426,3 +426,63 @@ void openlog(char *ident, int logopt, int facility);
 // logopt: LOG_PID, LOG_CONS,
 // facility LOG_KERN, LOG_USER, LOG_MAIL, LOG_DAEMON, LOG_NEWS, LOG_CRON
 void closelog(void);
+
+
+#include <sched.h>
+int clone (*fn) (void *), void *child_stack, int flags, void *arg);
+/*
+CLONE_PARENT
+CLONE_FS
+CLONE_FILES
+CLONE_SIGHAND
+CLONE_VM
+CLONE_PID
+*/
+
+#include <unistd.h>
+int pipe(int *fildes);
+
+int mknod(char *pathname, int mode, int dev);
+
+#include <sys/types.h>
+#include <sys/ipc.h>
+key_t ftok(const char *pathnam, int id);
+
+
+// msget(3/2); Messages
+#include <sys/types.h>
+#include <sys/ipc.h>
+#include <sys/msg.h>
+int msgget(key_t key, int msgflg);
+int msgsnd(int msqid, void *msgp, size_t msgsz, int msgflg);
+int msgrcv(int msqid, void *msgp, size_t msgsz, long msgtyp, int msgflg);
+// msgid - descriptor of object
+// long msgtype - type of message
+// char msgtext[] - message data
+
+// Semaphors
+#include <sys/sem.h>
+int semget(key_t key, int nsems, int flag);
+// IPC_CREAT, IPC_EXCL
+int semop(int semid, struct sembuf array[], unsigned nops);
+struct sembuf {
+  u_short sem_num; // number of semaphir in group
+  shor sem_op; // operation
+  short sem_flg; // operation flags
+}
+
+#include <machine/param.h>
+#include <sys/types.h>
+#include <sys/ipc.h>
+#inlcude <sys/shm.h>
+int shmget(key_y key, int size, int flag);
+void *shmat(int shmid, void *addr, int flag);
+int shmdt(void *addr);
+
+
+// Socket
+#include <sys/types.h>
+#include <sys/socket.h>
+int socket(int domain, int type, int protocol);
+int bind(int sockfd, const struct sockaddr *addr, socklen_t addrlen);
+
